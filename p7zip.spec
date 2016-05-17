@@ -4,7 +4,7 @@
 #
 Name     : p7zip
 Version  : 15.14.1_src_all
-Release  : 4
+Release  : 5
 URL      : http://downloads.sourceforge.net/project/p7zip/p7zip/15.14.1/p7zip_15.14.1_src_all.tar.bz2
 Source0  : http://downloads.sourceforge.net/project/p7zip/p7zip/15.14.1/p7zip_15.14.1_src_all.tar.bz2
 Summary  : No detailed summary available
@@ -12,6 +12,7 @@ Group    : Development/Tools
 License  : LGPL-2.1 MIT
 Requires: p7zip-bin
 Requires: p7zip-lib
+Requires: p7zip-doc
 BuildRequires : cmake
 BuildRequires : sed
 Patch1: build.patch
@@ -29,6 +30,14 @@ Group: Binaries
 
 %description bin
 bin components for the p7zip package.
+
+
+%package doc
+Summary: doc components for the p7zip package.
+Group: Documentation
+
+%description doc
+doc components for the p7zip package.
 
 
 %package lib
@@ -66,6 +75,10 @@ sed -i  "s|%{buildroot}||g" %{buildroot}/usr/bin/*
 %defattr(-,root,root,-)
 /usr/bin/7z
 /usr/bin/7za
+
+%files doc
+%defattr(-,root,root,-)
+%doc /usr/share/doc/p7zip/*
 
 %files lib
 %defattr(-,root,root,-)
