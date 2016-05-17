@@ -1,0 +1,45 @@
+--- p7zip_15.14.1/makefile.common~	2016-03-10 05:37:09.000000000 +0000
++++ p7zip_15.14.1/makefile.common	2016-05-17 12:20:54.466499962 +0000
+@@ -1,6 +1,6 @@
+ MKDIR = mkdir -p
+ 
+-DEST_HOME=/usr/local
++DEST_HOME=/usr
+ DEST_BIN=$(DEST_HOME)/bin
+ DEST_SHARE=$(DEST_HOME)/lib/p7zip
+ DEST_SHARE_DOC=$(DEST_HOME)/share/doc/p7zip
+@@ -113,7 +113,7 @@
+ 	cd check ; TOOLS="${TOOLS}" ./check_Client7z.sh "`pwd`/../bin/Client7z"
+ 
+ install:
+-	./install.sh $(DEST_BIN) $(DEST_SHARE) $(DEST_MAN) $(DEST_SHARE_DOC) $(DEST_DIR)
++	./install.sh $(DESTDIR)$(DEST_BIN) $(DESTDIR)$(DEST_SHARE) $(DEST_MAN) $(DESTDIR)$(DEST_SHARE_DOC) $(DESTDIR)$(DEST_DIR)
+ 
+ # cppcheck -f : test all flags
+ cppcheck:
+--- /dev/null	2016-04-21 15:04:13.003062678 +0000
++++ p7zip_15.14.1/makefile.linux	2016-05-17 12:10:19.414784812 +0000
+@@ -0,0 +1,23 @@
++
++OPTFLAGS=-O -s
++
++# use "-m32" to have a 32bits executable
++ALLFLAGS=-m64 ${OPTFLAGS} -pipe \
++    	-D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE \
++	-DNDEBUG -D_REENTRANT -DENV_UNIX \
++	-D_7ZIP_LARGE_PAGES \
++	$(LOCAL_FLAGS)
++
++CXX=g++
++CC=gcc
++CC_SHARED=-fPIC
++LINK_SHARED=-fPIC -shared
++
++PRE_COMPILED_HEADER=StdAfx.h.gch
++
++LOCAL_LIBS=-lpthread
++LOCAL_LIBS_DLL=$(LOCAL_LIBS) -ldl
++
++OBJ_CRC32=$(OBJ_CRC32_C)
++OBJ_AES=
++
