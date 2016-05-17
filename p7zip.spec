@@ -4,7 +4,7 @@
 #
 Name     : p7zip
 Version  : 15.14.1_src_all
-Release  : 2
+Release  : 3
 URL      : http://downloads.sourceforge.net/project/p7zip/p7zip/15.14.1/p7zip_15.14.1_src_all.tar.bz2
 Source0  : http://downloads.sourceforge.net/project/p7zip/p7zip/15.14.1/p7zip_15.14.1_src_all.tar.bz2
 Summary  : No detailed summary available
@@ -35,7 +35,7 @@ bin components for the p7zip package.
 %patch2 -p1
 
 %build
-make V=1  %{?_smp_mflags}
+make V=1  %{?_smp_mflags} all2
 
 %install
 rm -rf %{buildroot}
@@ -49,4 +49,5 @@ rm -rf %{buildroot}/usr/man/man1
 
 %files bin
 %defattr(-,root,root,-)
+/usr/bin/7z
 /usr/bin/7za
