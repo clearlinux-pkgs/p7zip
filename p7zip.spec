@@ -4,12 +4,13 @@
 #
 Name     : p7zip
 Version  : 15.14.1_src_all
-Release  : 1
+Release  : 2
 URL      : http://downloads.sourceforge.net/project/p7zip/p7zip/15.14.1/p7zip_15.14.1_src_all.tar.bz2
 Source0  : http://downloads.sourceforge.net/project/p7zip/p7zip/15.14.1/p7zip_15.14.1_src_all.tar.bz2
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1 MIT
+Requires: p7zip-bin
 BuildRequires : cmake
 Patch1: build.patch
 Patch2: norar.patch
@@ -19,6 +20,14 @@ p7zip 15.14.1
 =============
 Homepage : http://p7zip.sourceforge.net/
 p7zip is a port of the Windows programs 7z.exe and 7za.exe provided by 7-zip.
+
+%package bin
+Summary: bin components for the p7zip package.
+Group: Binaries
+
+%description bin
+bin components for the p7zip package.
+
 
 %prep
 %setup -q -n p7zip_15.14.1
@@ -37,91 +46,7 @@ rm -rf %{buildroot}/usr/man/man1
 
 %files
 %defattr(-,root,root,-)
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/bin/7za
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/ChangeLog
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/7zC.txt
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/7zFormat.txt
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/License.txt
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/commands/add.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/commands/bench.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/commands/delete.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/commands/extract.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/commands/extract_full.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/commands/hash.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/commands/index.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/commands/list.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/commands/rename.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/commands/style.css
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/commands/test.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/commands/update.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/exit_codes.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/index.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/style.css
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/ar_exclude.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/ar_include.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/ar_no.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/bb.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/bs.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/charset.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/email.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/exclude.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/include.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/index.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/large_pages.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/list_tech.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/method.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/output_dir.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/overwrite.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/password.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/recurse.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/sa.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/scc.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/scrc.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/sdel.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/sfx.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/shared.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/sni.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/sns.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/spf.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/ssc.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/stdin.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/stdout.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/stl.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/stop_switch.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/stx.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/style.css
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/type.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/update.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/volume.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/working_dir.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/switches/yes.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/cmdline/syntax.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/fm/about.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/fm/benchmark.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/fm/index.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/fm/menu.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/fm/options.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/fm/plugins/7-zip/add.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/fm/plugins/7-zip/extract.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/fm/plugins/7-zip/index.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/fm/plugins/7-zip/style.css
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/fm/plugins/index.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/fm/plugins/style.css
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/fm/style.css
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/general/7z.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/general/faq.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/general/formats.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/general/index.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/general/license.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/general/performance.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/general/style.css
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/general/thanks.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/start.htm
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/MANUAL/style.css
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/Methods.txt
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/copying.txt
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/lzma.txt
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/readme.txt
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/src-history.txt
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/DOC/unRarLicense.txt
-/builddir/build/BUILDROOT/p7zip-15.14.1_src_all-1.x86_64/usr/share/doc/p7zip/README
+
+%files bin
+%defattr(-,root,root,-)
+/usr/bin/7za
