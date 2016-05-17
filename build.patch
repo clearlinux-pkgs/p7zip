@@ -56,3 +56,14 @@
      cp bin/${prg} "${DEST_DIR}${DEST_SHARE}/${prg}"
      chmod 755 "${DEST_DIR}${DEST_SHARE}/${prg}"
      strip     "${DEST_DIR}${DEST_SHARE}/${prg}"
+--- p7zip_15.14.1/makefile.common~	2016-05-17 12:20:54.000000000 +0000
++++ p7zip_15.14.1/makefile.common	2016-05-17 13:18:55.491126662 +0000
+@@ -2,7 +2,7 @@
+ 
+ DEST_HOME=/usr
+ DEST_BIN=$(DEST_HOME)/bin
+-DEST_SHARE=$(DEST_HOME)/lib/p7zip
++DEST_SHARE=$(DEST_HOME)/libexec/p7zip
+ DEST_SHARE_DOC=$(DEST_HOME)/share/doc/p7zip
+ DEST_MAN=$(DEST_HOME)/man
+ 

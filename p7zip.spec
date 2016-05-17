@@ -4,14 +4,13 @@
 #
 Name     : p7zip
 Version  : 15.14.1_src_all
-Release  : 6
+Release  : 7
 URL      : http://downloads.sourceforge.net/project/p7zip/p7zip/15.14.1/p7zip_15.14.1_src_all.tar.bz2
 Source0  : http://downloads.sourceforge.net/project/p7zip/p7zip/15.14.1/p7zip_15.14.1_src_all.tar.bz2
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1 MIT
 Requires: p7zip-bin
-Requires: p7zip-lib
 Requires: p7zip-doc
 BuildRequires : cmake
 BuildRequires : sed
@@ -40,14 +39,6 @@ Group: Documentation
 doc components for the p7zip package.
 
 
-%package lib
-Summary: lib components for the p7zip package.
-Group: Libraries
-
-%description lib
-lib components for the p7zip package.
-
-
 %prep
 %setup -q -n p7zip_15.14.1
 %patch1 -p1
@@ -67,19 +58,16 @@ sed -i  "s|%{buildroot}||g" %{buildroot}/usr/bin/*
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/p7zip/7z
-/usr/lib/p7zip/7zCon.sfx
-/usr/lib/p7zip/7za
 
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/7z
 /usr/bin/7za
+/usr/libexec/p7zip/7z
+/usr/libexec/p7zip/7z.so
+/usr/libexec/p7zip/7zCon.sfx
+/usr/libexec/p7zip/7za
 
 %files doc
 %defattr(-,root,root,-)
 %doc /usr/share/doc/p7zip/*
-
-%files lib
-%defattr(-,root,root,-)
-/usr/lib/p7zip/7z.so
