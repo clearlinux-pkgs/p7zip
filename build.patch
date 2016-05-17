@@ -43,3 +43,16 @@
 +OBJ_CRC32=$(OBJ_CRC32_C)
 +OBJ_AES=
 +
+--- p7zip_15.14.1/install.sh~	2015-10-05 08:39:00.000000000 +0000
++++ p7zip_15.14.1/install.sh	2016-05-17 13:10:38.086551161 +0000
+@@ -5,7 +5,9 @@
+   prg=$1
+   if [ -x bin/${prg} ]
+   then
+-    echo "- installing ${DEST_DIR}${DEST_BIN}/${prg}"
++    echo "- installing shared ${DEST_DIR}${DEST_BIN}/${prg}"
++    mkdir -p "${DEST_DIR}${DEST_SHARE}"
++    echo cp bin/${prg} "${DEST_DIR}${DEST_SHARE}/${prg}"
+     cp bin/${prg} "${DEST_DIR}${DEST_SHARE}/${prg}"
+     chmod 755 "${DEST_DIR}${DEST_SHARE}/${prg}"
+     strip     "${DEST_DIR}${DEST_SHARE}/${prg}"
