@@ -13,7 +13,7 @@
  
  install:
 -	./install.sh $(DEST_BIN) $(DEST_SHARE) $(DEST_MAN) $(DEST_SHARE_DOC) $(DEST_DIR)
-+	./install.sh $(DESTDIR)$(DEST_BIN) $(DEST_SHARE) $(DEST_MAN) $(DEST_SHARE_DOC) $(DEST_DIR)
++	./install.sh $(DESTDIR)$(DEST_BIN) $(DESTDIR)$(DEST_SHARE) $(DEST_MAN) $(DEST_SHARE_DOC) $(DEST_DIR)
  
  # cppcheck -f : test all flags
  cppcheck:

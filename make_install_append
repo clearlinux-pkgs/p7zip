@@ -1,1 +1,3 @@
 rm -rf %{buildroot}/usr/man/man1
+rm -rf %{buildroot}/builddir/
+sed -i  "s|%{buildroot}||g" %{buildroot}/usr/bin/*
