@@ -4,7 +4,7 @@
 #
 Name     : p7zip
 Version  : 15.14.1_src_all
-Release  : 7
+Release  : 8
 URL      : http://downloads.sourceforge.net/project/p7zip/p7zip/15.14.1/p7zip_15.14.1_src_all.tar.bz2
 Source0  : http://downloads.sourceforge.net/project/p7zip/p7zip/15.14.1/p7zip_15.14.1_src_all.tar.bz2
 Summary  : No detailed summary available
@@ -14,6 +14,7 @@ Requires: p7zip-bin
 Requires: p7zip-doc
 BuildRequires : cmake
 BuildRequires : sed
+BuildRequires : yasm
 Patch1: build.patch
 Patch2: norar.patch
 
@@ -45,7 +46,23 @@ doc components for the p7zip package.
 %patch2 -p1
 
 %build
-make V=1  %{?_smp_mflags} all2
+export LANG=C
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
+export CFLAGS_GENERATE="$CFLAGS -fprofile-generate -fprofile-dir=pgo "
+export FCFLAGS_GENERATE="$FCFLAGS -fprofile-generate -fprofile-dir=pgo "
+export FFLAGS_GENERATE="$FFLAGS -fprofile-generate -fprofile-dir=pgo "
+export CXXFLAGS_GENERATE="$CXXFLAGS -fprofile-generate -fprofile-dir=pgo "
+export CFLAGS_USE="$CFLAGS -fprofile-use -fprofile-dir=pgo -fprofile-correction "
+export FCFLAGS_USE="$FCFLAGS -fprofile-use -fprofile-dir=pgo -fprofile-correction "
+export FFLAGS_USE="$FFLAGS -fprofile-use -fprofile-dir=pgo -fprofile-correction "
+export CXXFLAGS_USE="$CXXFLAGS -fprofile-use -fprofile-dir=pgo -fprofile-correction "
+make V=1  %{?_smp_mflags} all2 OPTFLAGS="$CFLAGS_GENERATE"; make V=1  %{?_smp_mflags} test ; make clean ; make V=1 %{?_smp_mflags} all2 OPTFLAGS="$CFLAGS_USE"
 
 %install
 rm -rf %{buildroot}
