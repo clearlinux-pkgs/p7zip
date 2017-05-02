@@ -4,7 +4,7 @@
 #
 Name     : p7zip
 Version  : 15.14.1_src_all
-Release  : 8
+Release  : 9
 URL      : http://downloads.sourceforge.net/project/p7zip/p7zip/15.14.1/p7zip_15.14.1_src_all.tar.bz2
 Source0  : http://downloads.sourceforge.net/project/p7zip/p7zip/15.14.1/p7zip_15.14.1_src_all.tar.bz2
 Summary  : No detailed summary available
