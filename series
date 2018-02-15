@@ -1,3 +1,4 @@
 build.patch
 norar.patch
 cve-2016-9296.patch
+cve-2017-17969.patch
