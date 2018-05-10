@@ -4,7 +4,7 @@
 #
 Name     : p7zip
 Version  : 16.02
-Release  : 16
+Release  : 17
 URL      : https://sourceforge.net/projects/p7zip/files/p7zip/16.02/p7zip_16.02_src_all.tar.bz2
 Source0  : https://sourceforge.net/projects/p7zip/files/p7zip/16.02/p7zip_16.02_src_all.tar.bz2
 Summary  : No detailed summary available
