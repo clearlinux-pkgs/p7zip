@@ -1,1 +1,1 @@
-all2 OPTFLAGS="$CFLAGS_GENERATE"; make V=1  %{?_smp_mflags} test ; make clean ; make V=1 %{?_smp_mflags} all2 OPTFLAGS="$CFLAGS_USE"
+all2 OPTFLAGS="$CFLAGS"

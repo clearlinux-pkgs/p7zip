@@ -4,16 +4,17 @@
 #
 Name     : p7zip
 Version  : 16.02
-Release  : 18
+Release  : 19
 URL      : https://sourceforge.net/projects/p7zip/files/p7zip/16.02/p7zip_16.02_src_all.tar.bz2
 Source0  : https://sourceforge.net/projects/p7zip/files/p7zip/16.02/p7zip_16.02_src_all.tar.bz2
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1 MIT
-Requires: p7zip-bin
-Requires: p7zip-doc
-BuildRequires : cmake
-BuildRequires : qtbase-dev
+Requires: p7zip-bin = %{version}-%{release}
+Requires: p7zip-libexec = %{version}-%{release}
+Requires: p7zip-license = %{version}-%{release}
+BuildRequires : buildreq-cmake
+BuildRequires : buildreq-qmake
 BuildRequires : sed
 BuildRequires : yasm
 Patch1: build.patch
@@ -31,6 +32,8 @@ p7zip is a port of the Windows programs 7z.exe and 7za.exe provided by 7-zip.
 %package bin
 Summary: bin components for the p7zip package.
 Group: Binaries
+Requires: p7zip-libexec = %{version}-%{release}
+Requires: p7zip-license = %{version}-%{release}
 
 %description bin
 bin components for the p7zip package.
@@ -44,8 +47,26 @@ Group: Documentation
 doc components for the p7zip package.
 
 
+%package libexec
+Summary: libexec components for the p7zip package.
+Group: Default
+Requires: p7zip-license = %{version}-%{release}
+
+%description libexec
+libexec components for the p7zip package.
+
+
+%package license
+Summary: license components for the p7zip package.
+Group: Default
+
+%description license
+license components for the p7zip package.
+
+
 %prep
 %setup -q -n p7zip_16.02
+cd %{_builddir}/p7zip_16.02
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -56,8 +77,9 @@ doc components for the p7zip package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1526273740
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1576187086
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -65,25 +87,39 @@ export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-m
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CFLAGS_GENERATE="$CFLAGS -fprofile-generate -fprofile-dir=pgo -fprofile-update=atomic "
-export FCFLAGS_GENERATE="$FCFLAGS -fprofile-generate -fprofile-dir=pgo -fprofile-update=atomic "
-export FFLAGS_GENERATE="$FFLAGS -fprofile-generate -fprofile-dir=pgo -fprofile-update=atomic "
-export CXXFLAGS_GENERATE="$CXXFLAGS -fprofile-generate -fprofile-dir=pgo -fprofile-update=atomic "
-export CFLAGS_USE="$CFLAGS -fprofile-use -fprofile-dir=pgo -fprofile-correction "
-export FCFLAGS_USE="$FCFLAGS -fprofile-use -fprofile-dir=pgo -fprofile-correction "
-export FFLAGS_USE="$FFLAGS -fprofile-use -fprofile-dir=pgo -fprofile-correction "
-export CXXFLAGS_USE="$CXXFLAGS -fprofile-use -fprofile-dir=pgo -fprofile-correction "
-make  %{?_smp_mflags} all2 OPTFLAGS="$CFLAGS_GENERATE"; make V=1  %{?_smp_mflags} test ; make clean ; make V=1 %{?_smp_mflags} all2 OPTFLAGS="$CFLAGS_USE"
+export CFLAGS_GENERATE="$CFLAGS -fprofile-generate -fprofile-dir=/var/tmp/pgo -fprofile-update=atomic "
+export FCFLAGS_GENERATE="$FCFLAGS -fprofile-generate -fprofile-dir=/var/tmp/pgo -fprofile-update=atomic "
+export FFLAGS_GENERATE="$FFLAGS -fprofile-generate -fprofile-dir=/var/tmp/pgo -fprofile-update=atomic "
+export CXXFLAGS_GENERATE="$CXXFLAGS -fprofile-generate -fprofile-dir=/var/tmp/pgo -fprofile-update=atomic "
+export LDFLAGS_GENERATE="$LDFLAGS -fprofile-generate -fprofile-dir=/var/tmp/pgo -fprofile-update=atomic "
+export CFLAGS_USE="$CFLAGS -fprofile-use -fprofile-dir=/var/tmp/pgo -fprofile-correction "
+export FCFLAGS_USE="$FCFLAGS -fprofile-use -fprofile-dir=/var/tmp/pgo -fprofile-correction "
+export FFLAGS_USE="$FFLAGS -fprofile-use -fprofile-dir=/var/tmp/pgo -fprofile-correction "
+export CXXFLAGS_USE="$CXXFLAGS -fprofile-use -fprofile-dir=/var/tmp/pgo -fprofile-correction "
+export LDFLAGS_USE="$LDFLAGS -fprofile-use -fprofile-dir=/var/tmp/pgo -fprofile-correction "
+CFLAGS="${CFLAGS_GENERATE}" CXXFLAGS="${CXXFLAGS_GENERATE}" FFLAGS="${FFLAGS_GENERATE}" FCFLAGS="${FCFLAGS_GENERATE}" LDFLAGS="${LDFLAGS_GENERATE}"
+make  %{?_smp_mflags}  all2 OPTFLAGS="$CFLAGS"
+
+make %{?_smp_mflags} test
+make clean
+CFLAGS="${CFLAGS_USE}" CXXFLAGS="${CXXFLAGS_USE}" FFLAGS="${FFLAGS_USE}" FCFLAGS="${FCFLAGS_USE}" LDFLAGS="${LDFLAGS_USE}"
+make  %{?_smp_mflags}  all2 OPTFLAGS="$CFLAGS"
+
 
 %install
-export SOURCE_DATE_EPOCH=1526273740
+export SOURCE_DATE_EPOCH=1576187086
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/p7zip
+cp %{_builddir}/p7zip_16.02/CPP/7zip/Compress/Lzham/LICENSE %{buildroot}/usr/share/package-licenses/p7zip/d230bdc39b30bbbd1f0c86e6b80f6b298bdae88b
+cp %{_builddir}/p7zip_16.02/DOC/License.txt %{buildroot}/usr/share/package-licenses/p7zip/bab5d073942213e6db7faf375475a0740664acb0
+cp %{_builddir}/p7zip_16.02/DOC/MANUAL/general/license.htm %{buildroot}/usr/share/package-licenses/p7zip/dcd5a7337669e751666e41359c11cbcfb372d29d
+cp %{_builddir}/p7zip_16.02/DOC/copying.txt %{buildroot}/usr/share/package-licenses/p7zip/01a6b4bf79aca9b556822601186afab86e8c4fbf
 %make_install
-## make_install_append content
+## install_append content
 rm -rf %{buildroot}/usr/man/man1
 rm -rf %{buildroot}/builddir/
 sed -i  "s|%{buildroot}||g" %{buildroot}/usr/bin/*
-## make_install_append end
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -92,11 +128,21 @@ sed -i  "s|%{buildroot}||g" %{buildroot}/usr/bin/*
 %defattr(-,root,root,-)
 /usr/bin/7z
 /usr/bin/7za
+
+%files doc
+%defattr(0644,root,root,0755)
+%doc /usr/share/doc/p7zip/*
+
+%files libexec
+%defattr(-,root,root,-)
 /usr/libexec/p7zip/7z
 /usr/libexec/p7zip/7z.so
 /usr/libexec/p7zip/7zCon.sfx
 /usr/libexec/p7zip/7za
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/doc/p7zip/*
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/p7zip/01a6b4bf79aca9b556822601186afab86e8c4fbf
+/usr/share/package-licenses/p7zip/bab5d073942213e6db7faf375475a0740664acb0
+/usr/share/package-licenses/p7zip/d230bdc39b30bbbd1f0c86e6b80f6b298bdae88b
+/usr/share/package-licenses/p7zip/dcd5a7337669e751666e41359c11cbcfb372d29d
