@@ -1,32 +1,8 @@
---- p7zip_15.14.1/makefile~	2016-02-29 06:28:31.000000000 +0000
-+++ p7zip_15.14.1/makefile	2016-05-17 12:15:40.282037167 +0000
-@@ -31,7 +31,6 @@
- 	$(MAKE) -C CPP/7zip/UI/Client7z           depend
- 	$(MAKE) -C CPP/7zip/UI/Console            depend
- 	$(MAKE) -C CPP/7zip/Bundles/Format7zFree  depend
--	$(MAKE) -C CPP/7zip/Compress/Rar          depend
- 	$(MAKE) -C CPP/7zip/UI/GUI                depend
- 	$(MAKE) -C CPP/7zip/UI/FileManager        depend
- 
-@@ -42,7 +41,6 @@
- common7z:common
- 	$(MKDIR) bin/Codecs
- 	$(MAKE) -C CPP/7zip/Bundles/Format7zFree all
--	$(MAKE) -C CPP/7zip/Compress/Rar         all
- 
- lzham:common
- 	$(MKDIR) bin/Codecs
-@@ -67,7 +65,6 @@
- 	$(MAKE) -C CPP/7zip/UI/FileManager       clean
- 	$(MAKE) -C CPP/7zip/UI/GUI               clean
- 	$(MAKE) -C CPP/7zip/Bundles/Format7zFree clean
--	$(MAKE) -C CPP/7zip/Compress/Rar         clean
- 	$(MAKE) -C CPP/7zip/Compress/Lzham       clean
- 	$(MAKE) -C CPP/7zip/Bundles/LzmaCon      clean2
- 	$(MAKE) -C CPP/7zip/Bundles/AloneGCOV    clean
---- p7zip_15.14.1/CPP/7zip/Bundles/Format7zFree/makefile.list~	2016-03-10 07:27:16.000000000 +0000
-+++ p7zip_15.14.1/CPP/7zip/Bundles/Format7zFree/makefile.list	2016-05-17 12:18:29.806418455 +0000
-@@ -87,8 +87,6 @@
+diff --git a/CPP/7zip/Bundles/Format7zFree/makefile.list b/CPP/7zip/Bundles/Format7zFree/makefile.list
+index 83359b4..307e956 100644
+--- a/CPP/7zip/Bundles/Format7zFree/makefile.list
++++ b/CPP/7zip/Bundles/Format7zFree/makefile.list
+@@ -90,8 +90,6 @@ SRCS=\
    ../../../../CPP/7zip/Archive/PeHandler.cpp \
    ../../../../CPP/7zip/Archive/PpmdHandler.cpp \
    ../../../../CPP/7zip/Archive/QcowHandler.cpp \
@@ -35,7 +11,7 @@
    ../../../../CPP/7zip/Archive/RpmHandler.cpp \
    ../../../../CPP/7zip/Archive/SplitHandler.cpp \
    ../../../../CPP/7zip/Archive/SquashfsHandler.cpp \
-@@ -191,9 +189,6 @@
+@@ -218,9 +216,6 @@ SRCS=\
    ../../../../CPP/7zip/Crypto/MyAesReg.cpp \
    ../../../../CPP/7zip/Crypto/Pbkdf2HmacSha1.cpp \
    ../../../../CPP/7zip/Crypto/RandGen.cpp \
@@ -45,7 +21,7 @@
    ../../../../CPP/7zip/Crypto/WzAes.cpp \
    ../../../../CPP/7zip/Crypto/ZipCrypto.cpp \
    ../../../../CPP/7zip/Crypto/ZipStrong.cpp \
-@@ -485,10 +480,6 @@
+@@ -817,10 +812,6 @@ PpmdHandler.o : ../../../../CPP/7zip/Archive/PpmdHandler.cpp
  	$(CXX) $(CXXFLAGS) ../../../../CPP/7zip/Archive/PpmdHandler.cpp
  QcowHandler.o : ../../../../CPP/7zip/Archive/QcowHandler.cpp
  	$(CXX) $(CXXFLAGS) ../../../../CPP/7zip/Archive/QcowHandler.cpp
@@ -56,7 +32,7 @@
  RpmHandler.o : ../../../../CPP/7zip/Archive/RpmHandler.cpp
  	$(CXX) $(CXXFLAGS) ../../../../CPP/7zip/Archive/RpmHandler.cpp
  SplitHandler.o : ../../../../CPP/7zip/Archive/SplitHandler.cpp
-@@ -693,12 +684,6 @@
+@@ -1073,12 +1064,6 @@ Pbkdf2HmacSha1.o : ../../../../CPP/7zip/Crypto/Pbkdf2HmacSha1.cpp
  	$(CXX) $(CXXFLAGS) ../../../../CPP/7zip/Crypto/Pbkdf2HmacSha1.cpp
  RandGen.o : ../../../../CPP/7zip/Crypto/RandGen.cpp
  	$(CXX) $(CXXFLAGS) ../../../../CPP/7zip/Crypto/RandGen.cpp
@@ -69,7 +45,7 @@
  WzAes.o : ../../../../CPP/7zip/Crypto/WzAes.cpp
  	$(CXX) $(CXXFLAGS) ../../../../CPP/7zip/Crypto/WzAes.cpp
  ZipCrypto.o : ../../../../CPP/7zip/Crypto/ZipCrypto.cpp
-@@ -869,8 +854,6 @@
+@@ -1364,8 +1349,6 @@ OBJS=\
   PeHandler.o \
   PpmdHandler.o \
   QcowHandler.o \
@@ -78,7 +54,7 @@
   RpmHandler.o \
   SplitHandler.o \
   SquashfsHandler.o \
-@@ -973,9 +956,6 @@
+@@ -1492,9 +1475,6 @@ OBJS=\
   MyAesReg.o \
   Pbkdf2HmacSha1.o \
   RandGen.o \
@@ -88,3 +64,31 @@
   WzAes.o \
   ZipCrypto.o \
   ZipStrong.o \
+diff --git a/makefile b/makefile
+index 745c8ed..f8e8e33 100644
+--- a/makefile
++++ b/makefile
+@@ -31,7 +31,6 @@ depend:
+ 	$(MAKE) -C CPP/7zip/UI/Client7z           depend
+ 	$(MAKE) -C CPP/7zip/UI/Console            depend
+ 	$(MAKE) -C CPP/7zip/Bundles/Format7zFree  depend
+-	$(MAKE) -C CPP/7zip/Compress/Rar          depend
+ 	$(MAKE) -C CPP/7zip/UI/GUI                depend
+ 	$(MAKE) -C CPP/7zip/UI/FileManager        depend
+ 
+@@ -42,7 +41,6 @@ sfx: common
+ common7z:common
+ 	$(MKDIR) bin/Codecs
+ 	$(MAKE) -C CPP/7zip/Bundles/Format7zFree all
+-	$(MAKE) -C CPP/7zip/Compress/Rar         all
+ 
+ lzham:common
+ 	$(MKDIR) bin/Codecs
+@@ -67,7 +65,6 @@ clean_C:
+ 	$(MAKE) -C CPP/7zip/UI/FileManager       clean
+ 	$(MAKE) -C CPP/7zip/UI/GUI               clean
+ 	$(MAKE) -C CPP/7zip/Bundles/Format7zFree clean
+-	$(MAKE) -C CPP/7zip/Compress/Rar         clean
+ 	$(MAKE) -C CPP/7zip/Compress/Lzham       clean
+ 	$(MAKE) -C CPP/7zip/Bundles/LzmaCon      clean2
+ 	$(MAKE) -C CPP/7zip/Bundles/AloneGCOV    clean
